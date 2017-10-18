@@ -1105,7 +1105,11 @@ describe( "Autolinker", function() {
 
 			it( "should NOT automatically link a phone number when there are no delimiters, since we don't know for sure if this is a phone number or some other number", function() {
 				expect( autolinker.link( "5556667777" ) ).toBe( '5556667777' );
-				expect( autolinker.link( "15417543010" ) ).toBe( '15417543010' );
+			} );
+
+			it( "should automatically link a phone number that is a China phone number", function() {
+				expect( autolinker.link( "15417543010" ) ).toBe( '<a href="tel:15417543010">15417543010</a>' );
+				expect( autolinker.link( "18888888888" ) ).toBe( '<a href="tel:18888888888">18888888888</a>' );
 			} );
 
 			it( "should NOT automatically link numbers when there are non-space empty characters (such as newlines) in between", function() {
